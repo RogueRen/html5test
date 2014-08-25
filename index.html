@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas画线</title>
+</head>
+<body>
+<canvas id="line">您的浏览器太老了。请用新版浏览器</canvas>
+<script type="text/javascript">
+    window.onload = function () {
+        var canvas = document.getElementById("line");
+        //定义画布像素
+        canvas.width = 1024;
+        canvas.height = 768;
+        //判断浏览器是否支持canvas
+        if (canvas.getContext("2d")) {
+            var context = canvas.getContext("2d");
+//                开始绘图
+            context.beginPath();
+//                开始坐标点
+            context.moveTo(100, 100);
+            context.lineTo(200, 200);
+            context.lineTo(200, 100);
+            context.lineTo(100, 100);
+//                画线粗细
+            context.lineWidth = 4;
+//                线段颜色
+            context.strokeStyle = "#000000";
+//                图形背景颜色
+            context.fillStyle = "blue";
+//                结束绘图
+            context.closePath();
+//                初始化图形背景颜色
+            context.fill();
+//                初始化图案
+            context.stroke();
+
+            context.beginPath()
+            context.moveTo(100, 100);
+            context.lineTo(100, 200);
+            context.lineTo(200, 200);
+            context.lineTo(100, 100);
+            context.lineWidth = 1;
+            context.strokeStyle = "#00ff00";
+            context.fillStyle = "#ff00ff";
+
+            context.closePath();
+            context.fill();
+            context.stroke();
+            context.beginPath();
+//                画一个圆（X坐标,Y坐标，圆的半径，开始的PI，结束的PI0-2）
+            context.arc(300, 300, 50, 0, 2 * Math.PI);
+//                背景颜色
+            context.fillStyle = "#ffff00";
+            context.fill();
+            context.closePath();
+            context.stroke();
+
+
+        } else {
+            alert("您的浏览器太老了。请用新版浏览器");
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>小球物理实验</title>
+</head>
+<body>
+<canvas id="ball"></canvas>
+<script>
+    var ball={x:500,y:100,r:20,g:4,vx:-4,vy:-10,color:"#ffff00"}
+    window.onload=function(){
+        var canvas=document.getElementById("ball");
+        canvas.width=1024;
+        canvas.height=768;
+        var context=canvas.getContext("2d");
+        setInterval(function(){
+            render(context);
+            update(context);
+        },50);
+    }
+    var update=function(ctxt){
+        ball.x+=ball.vx;
+        ball.y+=ball.vy;
+        ball.vy+=ball.g;
+        if(ball.y >= ctxt.canvas.height-ball.r){
+            ball.y=ctxt.canvas.height-ball.r;
+            ball.vy=-ball.vy*0.5;
+        }
+        if(ball.x<=0+ball.r){
+            ball.x=0+ball.r;
+            ball.vx=-ball.vx;
+        }
+        if(ball.x>=ctxt.canvas.width-ball.r){
+            ball.x=ctxt.canvas.width-ball.r;
+            ball.vx=-ball.vx;
+        }
+    }
+    var render=function(ctxt){
+        ctxt.clearRect(0,0,ctxt.canvas.width,ctxt.canvas.height);
+        ctxt.beginPath();
+        ctxt.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+        ctxt.fillStyle=ball.color;
+        ctxt.fill();
+        ctxt.closePath();
+    }
+
+</script>
+</body>
+</html>
